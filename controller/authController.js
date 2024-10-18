@@ -61,14 +61,14 @@ export const loginUser = async(req,res) =>{
             httpOnly: true, 
             secure: process.env.NODE_ENV === "production",
             maxAge: 24 * 60 * 60 * 1000, 
-            sameSite: "strict",      
+            sameSite: "none",      
         });
 
            res.cookie("refresh_token", refreshToken,{
             httpOnly: true, 
             secure: process.env.NODE_ENV === "production",
             maxAge: 3 * 24 * 60 * 60 * 1000,
-            sameSite: "strict",      
+            sameSite: "none",      
         });
         const { password: removedPassword, ...userWithoutPassword } = userExist._doc;
         return res.status(200).json({message:"Login successful",success:true,user:userWithoutPassword})
